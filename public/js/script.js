@@ -305,7 +305,7 @@ const resetGame=()=>{
         countClick=0;
         turnO=true;
         enableBoxes();
-    }  
+    }
 }
 
 const homeMenu=()=>{
@@ -337,6 +337,7 @@ newGameBtn.addEventListener("click",function(){
         check=false;
         displayNameContainer.classList.add("hide");
         playerNameContainer.classList.remove("hide");
+        searchPlayer.disabled=false;
         container.classList.add("hide")
         msgContainer.classList.add("hide")
         btnCon.classList.add("hide")
@@ -353,6 +354,7 @@ newGameBtn.addEventListener("click",function(){
         check=false;
         displayNameContainer.classList.add("hide");
         playerNameContainer.classList.remove("hide");
+        searchPlayer.disabled=false;
         container.classList.add("hide")
         msgContainer.classList.add("hide")
         btnCon.classList.add("hide")
@@ -373,6 +375,7 @@ newGameBtn.addEventListener("click",function(){
 // HOME BUTTON 
 resetBtn.addEventListener("click",function(){
     displayNameContainer.classList.remove("hide");
+    searchPlayer.disabled=false;
     
     // if anyone leave in middle game - > disconnect from both end and notify opponent
     if(type==='o' && onlineSecondaryCheck!=="p"){
@@ -529,6 +532,7 @@ searchPlayer.addEventListener("click",()=>{
     if (playerName == null || playerName == '') {
         alert("Please Enter a Name Before Searching");
     }else{
+        searchPlayer.disabled=true;
         spinner.classList.remove("hide");
         setTimeout(() => {
             socket.emit("find", { name: playerName });
@@ -564,6 +568,7 @@ socket.on("find",(e)=>{
     if(foundObj.p1.p1name===playerName || foundObj.p2.p2name===playerName){
         spinner.classList.add("hide")
         playerNameContainer.classList.add("hide");
+        searchPlayer.disabled=false;
         displayNameContainer.classList.remove("hide");
         msgContainer.classList.add("hide");
         container.classList.remove("hide")
@@ -588,6 +593,7 @@ socket.on("home",(e)=>{
         check=false;
         displayNameContainer.classList.add("hide");
         playerNameContainer.classList.add("hide");
+        searchPlayer.disabled=false;
         playerContainer.classList.remove("hide");
         container.classList.add("hide")
         msgContainer.classList.add("hide")
@@ -613,6 +619,7 @@ socket.on("playing",(e)=>{
         check=false;
         displayNameContainer.classList.add("hide");
         playerNameContainer.classList.remove("hide");
+        searchPlayer.disabled=false;
         container.classList.add("hide")
         msgContainer.classList.add("hide")
         btnCon.classList.add("hide")
