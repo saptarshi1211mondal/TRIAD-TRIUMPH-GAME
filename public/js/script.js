@@ -398,6 +398,7 @@ resetHome.addEventListener("click",function(){
     document.getElementById('idInput').value = '';
     resetGame();
     homeMenu();
+    searchPlayer.disabled=false;
     socket.emit("disconnected_single", { name: playerName });
 });
 
